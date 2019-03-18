@@ -1,0 +1,13 @@
+1 - Cria o indice com o arquivo "Indice Clientes"
+2 - Cria a query "queryClientes.sql"
+3 - Cria um arquivo de configuração "Logstash.conf"
+4 - fazendo a carga de dados do banco de dados para o elasticsearch
+  ./bin/logstash -f Logstash.conf
+
+
+./bin/logstash -f consulta_cliente.conf --config.reload.automatic 
+//deixando ele on Line
+
+Observação: Elasticsearch e Logstash precisam esta na mesma versão
+
+* Logstash é o mediador entre o banco de dados e o elasticsearch.

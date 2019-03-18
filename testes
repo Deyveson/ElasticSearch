@@ -1,0 +1,189 @@
+GET indice_clientes_v1/_search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+PUT indice_clientes_v1/clientes/2
+{
+    "id": "1",
+    "nome": "Igor",
+    "cpf": "1111111111",
+    "cnpj": "222222222",
+    "estado": "AM",
+    "cidade": "manaus",
+    "bairro": "Armando Mendes"
+}
+
+GET indice_clientes_v1/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match":{
+            "id":{
+              "query": "02322850000131",
+              "boost" : "2"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+
+
+GET indice_clientes_v1/_search
+{
+  "query": {
+    "bool": {
+      "should": [
+        {
+          "match": {
+            "id": {
+              "query": "02322850000131",
+              "operator": "and", 
+              "boost" : "2"
+            }
+          }
+        },
+        {
+          "match":{
+            "nome":{
+              "query": "AGROPECUARIA",
+              "boost" : "2"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+
+
+GET indice_clientes_v1/_search
+{
+    "query":{
+        "bool": {
+            "must": {
+                "multi_match": {
+                    "query": "89.605",
+                    "fields": [
+                        "id",
+                        "nome",
+                        "cpf",
+                        "cnpj",
+                        "bairro",
+                        "cidade",
+                        "estado"
+                    ]
+                }
+            }
+        }
+    }
+}
+            
+GET indice_clientes_v1/_search
+{
+  "query": {
+    "match": {
+      "nome": "AGORA VAI 2"
+    }
+  }
+}GET indice_clientes_v1/_search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+PUT indice_clientes_v1/clientes/2
+{
+    "id": "1",
+    "nome": "Igor",
+    "cpf": "1111111111",
+    "cnpj": "222222222",
+    "estado": "AM",
+    "cidade": "manaus",
+    "bairro": "Armando Mendes"
+}
+
+GET indice_clientes_v1/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match":{
+            "id":{
+              "query": "02322850000131",
+              "boost" : "2"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+
+
+GET indice_clientes_v1/_search
+{
+  "query": {
+    "bool": {
+      "should": [
+        {
+          "match": {
+            "id": {
+              "query": "02322850000131",
+              "operator": "and", 
+              "boost" : "2"
+            }
+          }
+        },
+        {
+          "match":{
+            "nome":{
+              "query": "AGROPECUARIA",
+              "boost" : "2"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+
+
+GET indice_clientes_v1/_search
+{
+    "query":{
+        "bool": {
+            "must": {
+                "multi_match": {
+                    "query": "89.605",
+                    "fields": [
+                        "id",
+                        "nome",
+                        "cpf",
+                        "cnpj",
+                        "bairro",
+                        "cidade",
+                        "estado"
+                    ]
+                }
+            }
+        }
+    }
+}
+            
+GET indice_clientes_v1/_search
+{
+  "query": {
+    "match": {
+      "nome": "AGORA VAI 2"
+    }
+  }
+}

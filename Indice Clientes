@@ -1,0 +1,106 @@
+PUT indice_clientes_v1
+{
+  "settings": {
+    "index":{
+      "number_of_shards": "3",
+      "number_of_replicas": "0",
+      "analysis": {
+        "filter": {
+              "filtro_autocomplete": {
+              "type": "edge_ngram",
+              "min_gram": "2",
+              "max_gram": "20"
+              }
+        },
+          "analyzer": {
+              "autocomplete": {
+                  "filter": [
+                      "lowercase",
+                      "filtro_autocomplete"
+                  ],
+                  "type": "custom",
+                  "tokenizer": "standard"
+              }
+          }
+      }
+    }  
+  },
+  "mappings": {
+    "clientes":{
+      "_all": {
+          "analyzer": "portuguese"
+      },
+      "properties": {
+        "nome":{
+          "type": "text",
+          "fields": {
+            "autocomplete": {
+              "type": "text",
+              "analyzer": "autocomplete",
+              "search_analyzer": "standard"
+            },
+            "original": {
+              "type": "keyword"
+              }
+          },
+          "analyzer": "standard"
+        },
+        "cpf": {
+          "type": "text",
+            "fields": {
+              "original": {
+              "type": "keyword"
+              }
+          }
+        },
+        "cnpj": {
+          "type": "text",
+            "fields": {
+              "original": {
+              "type": "keyword"
+              }
+          }
+        },
+        "estado": {
+          "type": "text",
+            "fields": {
+              "autocomplete": {
+              "type": "text",
+              "analyzer": "autocomplete",
+              "search_analyzer": "standard"
+              },
+              "original": {
+              "type": "keyword"
+              }
+          }
+        },
+        "municipio": {
+          "type": "text",
+            "fields": {
+              "autocomplete": {
+              "type": "text",
+              "analyzer": "autocomplete",
+              "search_analyzer": "standard"
+              },
+              "original": {
+              "type": "keyword"
+              }
+          }
+        },
+        "bairro": {
+          "type": "text",
+            "fields": {
+              "autocomplete": {
+              "type": "text",
+              "analyzer": "autocomplete",
+              "search_analyzer": "standard"
+              },
+              "original": {
+              "type": "keyword"
+              }
+          }
+        }
+      }  
+    }
+  }
+}
